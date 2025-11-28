@@ -6,6 +6,7 @@ import portraitImage from '@/assets/portrait.jpg';
 import fintechImage from '@/assets/project-fintech.jpg';
 import ecommerceImage from '@/assets/project-ecommerce.jpg';
 import cloudImage from '@/assets/project-cloud.jpg';
+import Navigation from '@/components/Navigation';
 
 // --- DATA STRUCTURES ---
 
@@ -229,7 +230,7 @@ const ToggleDarkMode = ({ darkMode, toggleMode }: { darkMode: boolean; toggleMod
 
 const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => void; handleLeave: () => void }) => {
   return (
-    <header className="min-h-[90vh] flex items-center pt-32 pb-48 max-w-[1600px] mx-auto">
+    <header id="home" className="min-h-[90vh] flex items-center pt-32 pb-48 max-w-[1600px] mx-auto">
       <motion.div
         className="grid lg:grid-cols-7 gap-16 w-full"
         initial="hidden"
@@ -313,7 +314,7 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
 };
 
 const AboutSection = () => (
-  <section className="py-24 max-w-[1600px] mx-auto">
+  <section id="about" className="py-24 max-w-[1600px] mx-auto">
     <motion.h2
       className="text-4xl sm:text-5xl font-light tracking-wide mb-12 max-w-7xl"
       initial={{ opacity: 0, y: 50 }}
@@ -749,8 +750,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative p-4 sm:p-8 lg:p-12 transition-smooth">
+      <Navigation darkMode={darkMode} toggleMode={toggleMode} />
       <CustomCursor cursorText={cursorText} />
-      <ToggleDarkMode darkMode={darkMode} toggleMode={toggleMode} />
 
       <main className="max-w-[1920px] mx-auto" id="main-content">
         <Hero handleHover={handleHover} handleLeave={handleLeave} />
