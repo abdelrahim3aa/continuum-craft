@@ -12,57 +12,75 @@ import cloudImage from '@/assets/project-cloud.jpg';
 const PROJECTS = [
   {
     id: 'p-01',
-    title: 'Cognitive Workflow Engine',
-    client: 'Global Fintech Firm',
-    date: '2024',
-    role: 'Lead UX Architect & Prototyping',
+    title: 'Learning Management System (LMS)',
+    client: 'Final Year Project',
+    date: 'Feb 2025 – Present',
+    role: 'Technical Lead & Backend Developer',
     priority: true,
-    tag: 'Fintech / UX Architecture',
-    stat: '60%',
-    statLabel: 'Latency Reduction',
-    problem: 'Existing risk assessment models required manual reconciliation across 12 disparate systems, leading to high latency and human error in critical decision-making.',
-    insight: 'The bottleneck wasn\'t the data—it was the cognitive load on analysts. We needed an orchestration layer that prioritized information hierarchy and prediction modeling, turning complexity into clarity.',
-    solution: 'Designed and implemented a serverless React/Node.js micro-frontend that aggregates real-time data streams and projects a 9-dimensional risk score, reducing decision latency by 60%.',
-    process: ['Deep User Journey Mapping (20+ interviews)', 'System Architecture Blueprinting', 'Atomic Design System Development', 'Performance Tuning & A/B Testing'],
-    result: 'Reduced average risk assessment time from 45 minutes to 18 minutes, resulting in a 12% operational efficiency gain and significant reduction in compliance exposure.',
+    tag: 'Education Tech / Full Stack',
+    stat: '500+',
+    statLabel: 'Concurrent Users',
+    problem: 'Educational institutions needed a robust platform to manage courses, assignments, and student progress with role-based access control for different user types (admin, instructor, student).',
+    insight: 'The key challenge was designing a scalable architecture that could handle concurrent users while maintaining data integrity and implementing granular permissions without compromising performance.',
+    solution: 'Architected a Laravel-based LMS with MySQL backend, implementing MVC pattern and Repository design pattern for clean, maintainable code. Integrated Angular for dynamic frontend interactions.',
+    process: ['Requirements gathering and system design', 'Database schema design with normalized tables', 'Role-based access control implementation', 'Team management and sprint planning'],
+    result: 'Successfully deployed system supporting 500+ concurrent users with 99.9% uptime. Led 5-person development team, managing sprints and deliverables using Agile methodology.',
     image: fintechImage,
-    liveUrl: '#',
+    liveUrl: 'https://github.com/abdelrahim3aa',
   },
   {
     id: 'p-02',
-    title: 'Hyper-Local E-Commerce Platform',
-    client: 'Startup Accelerator',
-    date: '2023',
-    role: 'Full Stack Engineer & Strategy',
-    priority: false,
-    tag: 'E-commerce / Full Stack',
-    stat: '50K',
-    statLabel: 'Concurrent Users',
-    problem: 'Market entry required rapid scaling and hyper-accurate inventory management with zero tolerance for overselling.',
-    insight: 'Leveraging a MongoDB geospatial index allowed us to solve the proximity/delivery challenge, but the crucial need was a robust, low-latency transaction API to prevent race conditions.',
-    solution: 'Built the core API and front-end interface using Laravel/MySQL and React, focusing on write optimization and implementing pessimistic locking strategies for inventory management.',
-    process: ['Microservices decomposition', 'Database schema optimization for scale', 'CI/CD pipeline implementation', 'Go-to-Market feature prioritization'],
-    result: 'Successfully handled 50,000 concurrent users during the launch phase with zero critical transaction failures. Platform grew to 10,000 daily orders within six months.',
+    title: 'Real-Time Chat Application',
+    client: 'Personal Project',
+    date: 'Mar 2025 – Apr 2025',
+    role: 'Full Stack Developer',
+    priority: true,
+    tag: 'Real-Time / WebSockets',
+    stat: '1,000+',
+    statLabel: 'Simultaneous Connections',
+    problem: 'Modern applications require instant communication capabilities, but implementing real-time features with security and scalability poses significant technical challenges.',
+    insight: 'Laravel Reverb combined with WebSockets provides an elegant solution for bi-directional communication, while event-driven architecture ensures message delivery remains fast even under load.',
+    solution: 'Built scalable messaging platform using Laravel 12 and Reverb, implementing WebSocket protocols for real-time communication. Used Laravel Sanctum for secure token-based authentication.',
+    process: ['WebSocket server setup and optimization', 'Event-driven architecture design', 'Authentication and authorization implementation', 'Load testing and performance tuning'],
+    result: 'Platform handles 1,000+ simultaneous connections with sub-second message delivery. Reduced security vulnerabilities by 95% through proper authentication implementation.',
     image: ecommerceImage,
-    liveUrl: '#',
+    liveUrl: 'https://github.com/abdelrahim3aa',
   },
   {
     id: 'p-03',
-    title: 'Cloud Data Migration Blueprint',
-    client: 'Fortune 500 Logistics',
-    date: '2022',
-    role: 'Solution Architect',
-    priority: true,
-    tag: 'Cloud / Architecture',
-    stat: '99.9%',
-    statLabel: 'Data Integrity',
-    problem: 'Legacy monolithic architecture prevented rapid adoption of cloud-native services and posed a high compliance risk.',
-    insight: 'A phased, domain-driven design approach was necessary, prioritizing the migration of non-critical services first to build organizational confidence and optimize resource consumption.',
-    solution: 'Developed the blueprint for a hybrid cloud migration strategy, overseeing the transition of 15 core services to AWS and establishing a unified GraphQL gateway.',
-    process: ['Risk Assessment & Compliance Review', 'Data Schemas Refactoring', 'Infrastructure-as-Code (Terraform) Setup', 'Continuous Monitoring Implementation'],
-    result: 'Achieved 99.9% data migration integrity and reduced quarterly infrastructure spend by 25% within the first year post-migration.',
+    title: 'E-commerce RESTful API',
+    client: 'Personal Project',
+    date: 'Oct 2024 – Nov 2024',
+    role: 'Backend Developer',
+    priority: false,
+    tag: 'E-commerce / API Development',
+    stat: '50K+',
+    statLabel: 'Daily Requests',
+    problem: 'E-commerce platforms require robust APIs to handle product management, orders, payments, and user authentication while maintaining high availability and performance.',
+    insight: 'Proper API design following RESTful principles, combined with caching strategies and query optimization, is crucial for handling high traffic while maintaining fast response times.',
+    solution: 'Developed comprehensive RESTful API using Laravel and MySQL, implementing OAuth 2.0 for secure authentication. Created OpenAPI-compliant documentation for easy integration.',
+    process: ['RESTful endpoint design and implementation', 'OAuth 2.0 token-based authentication', 'Database query optimization and indexing', 'Redis caching implementation'],
+    result: 'API handles 50,000+ daily requests with 99.5% uptime. Improved response times by 60% through database optimization and caching strategies.',
     image: cloudImage,
-    liveUrl: '#',
+    liveUrl: 'https://github.com/abdelrahim3aa',
+  },
+  {
+    id: 'p-04',
+    title: 'Newssy App',
+    client: 'Personal Project',
+    date: 'Aug 2024 – Sep 2024',
+    role: 'Full Stack Developer',
+    priority: false,
+    tag: 'Content Management / Full Stack',
+    stat: '5,000+',
+    statLabel: 'Active Users',
+    problem: 'News platforms need to deliver dynamic content efficiently to diverse user bases while supporting multiple languages and providing analytics for content performance.',
+    insight: 'Implementing multi-language support from the ground up and optimizing content delivery through lazy loading significantly improves user experience and engagement across different demographics.',
+    solution: 'Engineered news management system with Laravel and MySQL backend, implementing multi-language localization (Arabic, English, French) and developing analytics dashboard for content insights.',
+    process: ['Content management system architecture', 'Multi-language localization implementation', 'Analytics dashboard development', 'Frontend optimization with lazy loading'],
+    result: 'Platform supports 5,000+ users with 35% increase in user engagement. Reduced page load times by 45% through frontend optimization techniques.',
+    image: fintechImage,
+    liveUrl: 'https://github.com/abdelrahim3aa',
   },
 ];
 
@@ -83,19 +101,19 @@ const CAPABILITIES = [
 
 const PHILOSOPHY = [
   { 
-    title: 'Beliefs on Software Quality', 
-    icon: HeartHandshake, 
-    text: 'Quality is the measurable distance between what a system promises and what it delivers. It\'s not a feature; it\'s the foundational contract with the user. We build systems to endure, not just to launch.' 
-  },
-  { 
-    title: 'The Power of Subtraction', 
-    icon: Zap, 
-    text: 'Design maturity is knowing what to remove. Every unnecessary element—be it a line of code or a decorative flourish—adds cognitive debt. Clarity emerges from the deliberate absence of clutter.' 
-  },
-  { 
-    title: 'Aesthetics of Performance', 
+    title: 'Clean Code Advocate', 
     icon: Code, 
-    text: 'The fastest interface is the most elegant one. Performance is the final layer of polish. Janky experiences signal a lack of structural integrity; smoothness is an architectural choice.' 
+    text: 'Following SOLID principles and writing maintainable code isn\'t just best practice—it\'s a commitment to future developers and the longevity of the project. Every function should do one thing well.' 
+  },
+  { 
+    title: 'Problem Solver', 
+    icon: Zap, 
+    text: 'Backend development is about solving complex problems with elegant solutions. Whether optimizing database queries or architecting scalable APIs, the goal is always clarity and efficiency.' 
+  },
+  { 
+    title: 'Continuous Learner', 
+    icon: HeartHandshake, 
+    text: 'Technology evolves rapidly, and staying current is essential. From mastering Laravel patterns to exploring new tools like Docker and WebSockets, growth is a daily practice.' 
   },
 ];
 
@@ -233,9 +251,15 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
               visible: { scale: 1, opacity: 1, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.83, 0, 0.17, 1] } } 
             }}
           >
-            Abdelrahim Abuelmaaref
+            Building scalable web applications
             <span className="text-accent">.</span>
           </motion.h1>
+          <motion.p
+            className="text-xl font-light mt-6 text-muted-foreground max-w-2xl"
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { delay: 0.2 } } }}
+          >
+            Junior Backend Developer specializing in PHP and Laravel, passionate about clean code and scalable architecture.
+          </motion.p>
 
           <motion.a
             href="mailto:abdelrahimabuelmaaref@gmail.com"
@@ -281,17 +305,44 @@ const AboutSection = () => (
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
     >
-      The Practice.
+      About Me
     </motion.h2>
-    <motion.p
-      className="text-xl font-light max-w-3xl leading-relaxed text-muted-foreground"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ delay: 0.2 }}
-    >
-      Junior Backend Developer skilled in PHP and Laravel, with experience in scalable web apps and RESTful APIs. Passionate about clean, SOLID code and continuous improvement. Currently pursuing a Bachelor's degree in Computers & Artificial Intelligence at Sohag University.
-    </motion.p>
+    <div className="grid lg:grid-cols-2 gap-12">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ delay: 0.2 }}
+      >
+        <p className="text-xl font-light leading-relaxed mb-6 text-muted-foreground">
+          I'm a Junior Backend Developer passionate about building scalable web applications and RESTful APIs using PHP and Laravel. I focus on writing clean, maintainable code following SOLID principles and industry best practices.
+        </p>
+        <p className="text-xl font-light leading-relaxed text-muted-foreground">
+          With hands-on experience in full-stack development, I've built real-time chat applications, e-commerce platforms, and learning management systems that serve thousands of users.
+        </p>
+      </motion.div>
+      <motion.div
+        className="p-6 rounded-xl border border-divider bg-card"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ delay: 0.3 }}
+      >
+        <h3 className="text-2xl font-medium mb-4">Education</h3>
+        <p className="text-lg font-medium">
+          Bachelor of Computers & Artificial Intelligence
+        </p>
+        <p className="text-base text-muted-foreground mb-4">
+          Sohag University | Sept 2021 – June 2025
+        </p>
+        <p className="text-base font-light text-muted-foreground">
+          Relevant coursework: Data Structures & Algorithms, Database Management, Web Development
+        </p>
+        <p className="text-base font-light text-muted-foreground mt-4">
+          <strong>Final year project:</strong> AI Learning Management System (AI-LMS)
+        </p>
+      </motion.div>
+    </div>
   </section>
 );
 
@@ -314,7 +365,7 @@ const PriorityProjectsGrid = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        Featured Engagements <Briefcase size={36} className="inline-block ml-2 mb-1 text-accent" />
+        Featured Projects <Briefcase size={36} className="inline-block ml-2 mb-1 text-accent" />
       </motion.h2>
       <motion.p
         className="text-xl font-light max-w-3xl mb-16 leading-relaxed text-muted-foreground"
@@ -323,7 +374,7 @@ const PriorityProjectsGrid = ({
         viewport={{ once: true, amount: 0.3 }}
         transition={{ delay: 0.2 }}
       >
-        Case studies that highlight strategic architectural decisions and measurable business outcomes.
+        Real-world projects showcasing technical problem-solving and measurable results.
       </motion.p>
 
       <div className="grid lg:grid-cols-2 gap-10">
@@ -378,13 +429,13 @@ const WorkTimeline = ({
 }) => (
   <section id="work-archive" className="py-24 max-w-[1600px] mx-auto">
     <motion.h2
-      className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
-      The Full Continuum
-    </motion.h2>
+        className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        All Projects
+      </motion.h2>
 
     <div className="relative border-l-2 border-divider ml-4 lg:ml-0">
       {PROJECTS.map((project, index) => (
@@ -573,10 +624,10 @@ const HumanLayer = () => (
       className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
-      On Craft.
-    </motion.h2>
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        My Approach
+      </motion.h2>
     <div className="grid lg:grid-cols-3 gap-12">
       {PHILOSOPHY.map((item, index) => (
         <motion.div
@@ -604,10 +655,10 @@ const ContactLayer = ({ handleHover, handleLeave }: any) => (
       className="text-4xl sm:text-5xl font-light tracking-wide mb-8"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
-      Direct.
-    </motion.h2>
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        Get In Touch
+      </motion.h2>
     <motion.a
       href="mailto:senior.architect@manifest.com"
       className="text-4xl sm:text-6xl font-extralight tracking-tighter mb-12 block group relative w-fit mx-auto transition-colors duration-300 hover:text-accent"
@@ -706,7 +757,7 @@ const Index = () => {
       </main>
 
       <footer className="text-center py-8 text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Abdelrahim Abuelmaaref. Built with React & Tailwind.
+        © {new Date().getFullYear()} Abdelrahim Abuelmaaref. Built with React, Tailwind & Framer Motion.
       </footer>
     </div>
   );
