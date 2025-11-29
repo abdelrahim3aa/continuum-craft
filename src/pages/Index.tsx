@@ -127,6 +127,29 @@ const PHILOSOPHY = [
   },
 ];
 
+const ACHIEVEMENTS = [
+  {
+    icon: '🏆',
+    title: 'Team Leadership',
+    description: 'Led 5-person development team using Agile methodology for LMS project'
+  },
+  {
+    icon: '⚡',
+    title: 'Performance Optimization',
+    description: 'Reduced page load times by 45% through frontend optimization techniques'
+  },
+  {
+    icon: '🔒',
+    title: 'Security Excellence',
+    description: 'Reduced security vulnerabilities by 95% through proper authentication implementation'
+  },
+  {
+    icon: '📈',
+    title: 'Scalability',
+    description: 'Built systems handling 50,000+ daily requests with 99.5% uptime'
+  }
+];
+
 // --- CUSTOM HOOKS ---
 
 const useDarkMode = () => {
@@ -247,6 +270,18 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
       >
         <div className="lg:col-span-5 flex flex-col justify-center">
+          {/* Mobile Portrait - Small Circle */}
+          <motion.div
+            className="lg:hidden flex justify-center mb-8"
+            variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { delay: 0.2 } } }}
+          >
+            <img
+              src={portraitImage}
+              alt="Abdelrahim Abuelmaaref"
+              className="w-24 h-24 object-cover rounded-full border-2 border-accent shadow-lg"
+            />
+          </motion.div>
+
           <motion.p
             className="text-lg font-light mb-4 text-muted-foreground"
             variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
@@ -358,25 +393,66 @@ const AboutSection = () => (
 
       </motion.div>
       <motion.div
-        className="p-6 rounded-xl border border-divider bg-card"
+        className="p-8 rounded-xl border-2 border-accent/20 bg-gradient-to-br from-card via-card to-accent/5 relative overflow-hidden group"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ delay: 0.3 }}
+        whileHover={{ scale: 1.02 }}
       >
-        <h3 className="text-2xl font-medium mb-4">Education</h3>
-        <p className="text-lg font-medium">
-          Bachelor of Computers & Artificial Intelligence
-        </p>
-        <p className="text-base text-muted-foreground mb-4">
-          Sohag University | Sept 2021 – June 2025
-        </p>
-        <p className="text-base font-light text-muted-foreground">
-          Relevant coursework: Data Structures & Algorithms, Database Management, Web Development
-        </p>
-        <p className="text-base font-light text-muted-foreground mt-4">
-          <strong>Final year project:</strong> AI Learning Management System (AI-LMS)
-        </p>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 rounded-lg bg-accent/10 text-accent">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold">Education</h3>
+          </div>
+          
+          <p className="text-xl font-semibold mb-2">
+            Bachelor of Computers & Artificial Intelligence
+          </p>
+          <p className="text-base text-muted-foreground mb-6 flex items-center gap-2">
+            <span className="text-accent">📍</span>
+            Sohag University | Sept 2021 – June 2025
+          </p>
+          
+          <div className="space-y-4">
+            <div className="p-4 rounded-lg bg-background/50 border border-divider/50">
+              <p className="text-sm font-medium text-accent mb-2">Relevant Coursework</p>
+              <p className="text-sm text-muted-foreground">
+                Data Structures & Algorithms • Database Management • Web Development • Software Engineering
+              </p>
+            </div>
+            
+            <div className="p-4 rounded-lg bg-accent/5 border border-accent/20">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-accent mb-1">Final Year Project</p>
+                  <p className="text-base font-semibold mb-2">AI Learning Management System (AI-LMS)</p>
+                  <p className="text-sm text-muted-foreground">
+                    Laravel-based LMS supporting 500+ concurrent users with role-based access control
+                  </p>
+                </div>
+                <motion.a
+                  href="https://github.com/abdelrahim3aa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-accent/10 hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="View LMS project on GitHub"
+                >
+                  <Github size={20} />
+                </motion.a>
+              </div>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </div>
   </section>
@@ -385,11 +461,11 @@ const AboutSection = () => (
 const PriorityProjectsGrid = ({ 
   handleHover, 
   handleLeave, 
-  setExpandedProjectId 
+  toggleProjectExpansion 
 }: { 
   handleHover: (text: string) => void; 
   handleLeave: () => void;
-  setExpandedProjectId: (id: string) => void;
+  toggleProjectExpansion: (id: string) => void;
 }) => {
   const priorityProjects = PROJECTS.filter(p => p.priority);
 
@@ -437,13 +513,15 @@ const PriorityProjectsGrid = ({
                 <p className="text-xs uppercase font-medium mt-1 text-muted-foreground">{project.statLabel}</p>
               </div>
 
-              <button
-                className="inline-flex items-center text-sm font-medium transition-colors group-hover:underline"
-                onClick={() => setExpandedProjectId(project.id)}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-medium transition-colors hover:text-accent hover:underline"
               >
-                View Case Study
+                View on GitHub
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
+              </a>
             </div>
           </motion.div>
         ))}
@@ -453,13 +531,13 @@ const PriorityProjectsGrid = ({
 };
 
 const WorkTimeline = ({ 
-  expandedProjectId, 
-  setExpandedProjectId, 
+  expandedProjects, 
+  toggleProjectExpansion, 
   handleHover, 
   handleLeave 
 }: { 
-  expandedProjectId: string | null; 
-  setExpandedProjectId: (id: string | null) => void;
+  expandedProjects: string[]; 
+  toggleProjectExpansion: (id: string) => void;
   handleHover: (text: string) => void;
   handleLeave: () => void;
 }) => (
@@ -490,8 +568,8 @@ const WorkTimeline = ({
 
           <ProjectPreview
             project={project}
-            isExpanded={expandedProjectId === project.id}
-            setExpandedProjectId={setExpandedProjectId}
+            isExpanded={expandedProjects.includes(project.id)}
+            toggleProjectExpansion={toggleProjectExpansion}
             handleHover={handleHover}
             handleLeave={handleLeave}
           />
@@ -504,12 +582,12 @@ const WorkTimeline = ({
 const ProjectPreview = ({ 
   project, 
   isExpanded, 
-  setExpandedProjectId, 
+  toggleProjectExpansion, 
   handleHover, 
   handleLeave 
 }: any) => {
   const handleToggle = () => {
-    setExpandedProjectId(isExpanded ? null : project.id);
+    toggleProjectExpansion(project.id);
   };
 
   return (
@@ -517,8 +595,6 @@ const ProjectPreview = ({
       <motion.div
         className="cursor-pointer rounded-xl p-8 border border-divider hover:bg-muted/5"
         onClick={handleToggle}
-        onMouseEnter={() => handleHover(isExpanded ? 'CLOSE' : 'VIEW')}
-        onMouseLeave={handleLeave}
         animate={{
           backgroundColor: isExpanded ? 'hsl(var(--muted))' : 'transparent',
           borderColor: isExpanded ? 'hsl(var(--accent))' : 'hsl(var(--divider))'
@@ -629,25 +705,30 @@ const CapabilitySignal = ({ handleHover, handleLeave, cursorText }: any) => (
       {CAPABILITIES.map((cap, index) => (
         <motion.div
           key={cap.name}
-          className="relative w-16 h-16 flex items-center justify-center"
+          className="relative w-16 h-16 flex flex-col items-center justify-center group"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.4, delay: index * 0.05 }}
-          whileHover={{ scale: 1.2, rotate: 3 }}
-          onMouseEnter={() => handleHover(cap.name)}
-          onMouseLeave={handleLeave}
           role="img"
           aria-label={`${cap.name} technical skill`}
         >
-          <cap.icon
-            size={48}
-            className="transition-all duration-300"
-            style={{ 
-              color: cursorText === cap.name ? 'hsl(var(--accent))' : 'hsl(var(--foreground))',
-              filter: cursorText === cap.name ? 'drop-shadow(0 0 8px hsl(var(--accent)))' : 'none' 
-            }}
-          />
+          <motion.div
+            whileHover={{ scale: 1.2, rotate: 3 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <cap.icon
+              size={48}
+              className="transition-all duration-300 group-hover:text-accent group-hover:drop-shadow-[0_0_8px_hsl(var(--accent))]"
+            />
+          </motion.div>
+          <motion.span 
+            className="absolute -bottom-8 text-sm font-medium text-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
+            initial={{ y: -5 }}
+            whileHover={{ y: 0 }}
+          >
+            {cap.name}
+          </motion.span>
         </motion.div>
       ))}
     </div>
@@ -660,25 +741,74 @@ const HumanLayer = () => (
       className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        My Approach
-      </motion.h2>
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      My Approach
+    </motion.h2>
     <div className="grid lg:grid-cols-3 gap-12">
       {PHILOSOPHY.map((item, index) => (
         <motion.div
           key={item.title}
-          className="p-6 rounded-xl border border-divider bg-card"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="p-8 rounded-xl border border-divider bg-card relative overflow-hidden group"
+          initial={{ opacity: 0, y: 50, rotateX: -15 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.5, delay: index * 0.15 }}
+          transition={{ 
+            duration: 0.6, 
+            delay: index * 0.2,
+            type: "spring",
+            stiffness: 100
+          }}
+          whileHover={{ 
+            y: -10,
+            transition: { duration: 0.3 }
+          }}
         >
-          <item.icon size={32} className="mb-4 text-accent" aria-hidden="true" />
-          <h3 className="text-xl font-medium mb-3">{item.title}</h3>
-          <p className="text-base font-light leading-relaxed text-muted-foreground">
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            initial={false}
+          />
+          
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.2 + 0.3, type: "spring", stiffness: 200 }}
+          >
+            <item.icon 
+              size={40} 
+              className="mb-6 text-accent group-hover:scale-110 transition-transform duration-300" 
+              aria-hidden="true" 
+            />
+          </motion.div>
+          
+          <motion.h3 
+            className="text-xl font-semibold mb-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.2 + 0.4 }}
+          >
+            {item.title}
+          </motion.h3>
+          
+          <motion.p 
+            className="text-base font-light leading-relaxed text-muted-foreground"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.2 + 0.5 }}
+          >
             {item.text}
-          </p>
+          </motion.p>
+          
+          <motion.div 
+            className="absolute bottom-0 left-0 h-1 bg-accent"
+            initial={{ width: 0 }}
+            whileInView={{ width: "100%" }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.2 + 0.6, duration: 0.8 }}
+          />
         </motion.div>
       ))}
     </div>
@@ -696,10 +826,8 @@ const ContactLayer = ({ handleHover, handleLeave }: any) => (
         Get In Touch
       </motion.h2>
     <motion.a
-      href="mailto:abdelrahimabuelmaaref@gmail.com"
-      className="text-4xl sm:text-6xl font-extralight tracking-tighter mb-12 block group relative w-fit mx-auto transition-colors duration-300 hover:text-accent"
-      onMouseEnter={() => handleHover('EMAIL')}
-      onMouseLeave={handleLeave}
+      href="mailto:abdelrahim.abuelmaaref@gmail.com"
+      className="text-2xl sm:text-4xl lg:text-6xl font-extralight tracking-tighter mb-12 block group relative w-fit mx-auto transition-colors duration-300 hover:text-accent break-all px-4"
       whileHover={{ scale: 1.02 }}
     >
       abdelrahim.abuelmaaref@gmail.com
@@ -740,30 +868,53 @@ const SocialIcon = ({ Icon, href, label, handleHover, handleLeave }: any) => (
   </motion.a>
 );
 
+const AchievementsSection = () => (
+  <section className="py-24 max-w-[1600px] mx-auto">
+    <motion.h2
+      className="text-4xl sm:text-5xl font-light tracking-wide mb-16 max-w-7xl"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      Key Achievements
+    </motion.h2>
+    
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {ACHIEVEMENTS.map((achievement, index) => (
+        <motion.div
+          key={achievement.title}
+          className="p-6 rounded-xl bg-gradient-to-br from-card to-card/50 border border-divider relative overflow-hidden group"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -5, transition: { duration: 0.2 } }}
+        >
+          <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+          
+          <div className="relative z-10">
+            <div className="text-4xl mb-4">{achievement.icon}</div>
+            <h3 className="text-lg font-semibold mb-2 text-accent">{achievement.title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{achievement.description}</p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </section>
+);
+
 // --- MAIN APP ---
 
 const Index = () => {
   const [darkMode, toggleMode] = useDarkMode();
   const [cursorText, setCursorText] = useState('');
+  const [expandedProjects, setExpandedProjects] = useState<string[]>([]);
 
-  const expandedProjectId = useMemo(() => {
-    const hash = typeof window !== 'undefined' ? window.location.hash.substring(1) : '';
-    const project = PROJECTS.find(p => p.id === hash);
-    return project ? project.id : null;
+  const toggleProjectExpansion = useCallback((id: string) => {
+    setExpandedProjects(prev => 
+      prev.includes(id) ? prev.filter(pid => pid !== id) : [...prev, id]
+    );
   }, []);
-
-  const setExpandedProjectId = useCallback((id: string | null) => {
-    const newHash = id ? `#${id}` : '';
-    if (typeof window !== 'undefined') {
-      window.history.pushState(null, '', newHash);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash && !expandedProjectId) {
-      window.history.replaceState(null, '', window.location.pathname);
-    }
-  }, [expandedProjectId]);
 
   const handleHover = (text: string) => setCursorText(text);
   const handleLeave = () => setCursorText('');
@@ -779,15 +930,16 @@ const Index = () => {
         <PriorityProjectsGrid 
           handleHover={handleHover} 
           handleLeave={handleLeave} 
-          setExpandedProjectId={setExpandedProjectId}
+          toggleProjectExpansion={toggleProjectExpansion}
         />
         <WorkTimeline
-          expandedProjectId={expandedProjectId}
-          setExpandedProjectId={setExpandedProjectId}
+          expandedProjects={expandedProjects}
+          toggleProjectExpansion={toggleProjectExpansion}
           handleHover={handleHover}
           handleLeave={handleLeave}
         />
         <CapabilitySignal handleHover={handleHover} handleLeave={handleLeave} cursorText={cursorText} />
+        <AchievementsSection />
         <HumanLayer />
         <ContactLayer handleHover={handleHover} handleLeave={handleLeave} />
       </main>
