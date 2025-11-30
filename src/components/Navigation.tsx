@@ -16,7 +16,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
   const navItems = [
     { id: 'home', label: 'Home', href: '#home' },
     { id: 'about', label: 'About', href: '#about' },
-    { id: 'projects', label: 'Projects', href: '#priority-work' },
+    { id: 'projects', label: 'Projects', href: '#filter-section' },
     { id: 'tech', label: 'Tech Stack', href: '#capabilities' },
     { id: 'approach', label: 'Approach', href: '#philosophy' },
     { id: 'contact', label: 'Contact', href: '#contact' },

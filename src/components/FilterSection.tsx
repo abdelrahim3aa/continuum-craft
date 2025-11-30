@@ -115,8 +115,8 @@ export const FilterSection = ({ onFilterChange, onSearchChange, onSortChange }: 
     !selectedTypes.includes("All") || selectedTechnologies.length > 0 || searchQuery.length > 0;
 
   return (
-    <div className="w-full bg-card border border-border rounded-xl p-6 shadow-sm">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full bg-card/50 backdrop-blur-sm border-2 border-accent/20 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
+      <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-lg">
             <Filter className="w-5 h-5 text-primary" />
