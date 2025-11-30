@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Github, Linkedin, Mail, ArrowRight, X, HeartHandshake, Zap, Code, ExternalLink, Briefcase, Link as LinkIcon, Download } from 'lucide-react';
+import { Sun, Moon, Github, Linkedin, Mail, ArrowRight, X, HeartHandshake, Zap, Code, ExternalLink, Briefcase, Link as LinkIcon, Download, Database, Phone, Laptop, GraduationCap } from 'lucide-react';
 import { 
   SiPhp, SiLaravel, SiMysql, SiNodedotjs, SiExpress, SiMongodb,
   SiHtml5, SiCss3, SiCplusplus, SiJavascript, SiDocker, SiGit,
@@ -55,7 +55,7 @@ const PROJECTS = [
     process: ['WebSocket server setup and optimization', 'Event-driven architecture design', 'Authentication and authorization implementation', 'Load testing and performance tuning'],
     result: 'Platform handles 1,000+ simultaneous connections with sub-second message delivery. Reduced security vulnerabilities by 95% through proper authentication implementation.',
     image: ecommerceImage,
-    liveUrl: '',
+    liveUrl: 'https://github.com/',
     // ADDED FOR FILTERING
     type: ['Full Stack', 'Real-Time'],
     technology: ['Laravel', 'PHP', 'WebSockets'],
@@ -157,24 +157,26 @@ const PROJECTS = [
 ];
 
 // MODIFIED: Added 'color' property (using HEX codes for brand colors)
+// MODIFIED: Added 'iconColor' and 'textColor' properties for separate coloring
 const CAPABILITIES = [
-  { name: 'PHP', icon: SiPhp, color: '#777BB4' },
-  { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
-  { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
-  { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  { name: 'Express.js', icon: SiExpress, color: '#000000' }, 
-  { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
-  { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
-  { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
-  { name: 'C++', icon: SiCplusplus, color: '#00599C' },
-  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-  { name: 'Docker', icon: SiDocker, color: '#2496ED' },
-  { name: 'Git', icon: SiGit, color: '#F05032' },
-  { name: 'React', icon: SiReact, color: '#61DAFB' },
-  { name: 'Composer', icon: SiComposer, color: '#885630' },
-  { name: 'Linux', icon: SiLinux, color: '#FCC624' },
-  { name: 'Python', icon: SiPython, color: '#3776AB' },
-  { name: 'npm', icon: SiNpm, color: '#CB3837' },
+  { name: 'PHP', icon: SiPhp, iconColor: '#6c71bbff', textColor: '#6c71bbff' },
+  { name: 'Laravel', icon: SiLaravel, iconColor: '#f91f14ff', textColor: '#f91f14ff' },
+  { name: 'MySQL', icon: SiMysql, iconColor: '#00758F', textColor: '#F29111' }, // Dolphin colors
+  { name: 'Node.js', icon: SiNodedotjs, iconColor: '#299c29ff', textColor: '#299c29ff' },
+  { name: 'Express.js', icon: SiExpress, iconColor: '#000000', textColor: '#000000' }, 
+  { name: 'MongoDB', icon: SiMongodb, iconColor: '#47A248', textColor: '#47A248' },
+  { name: 'HTML5', icon: SiHtml5, iconColor: '#e64b20ff', textColor: '#e64b20ff' },
+  { name: 'CSS3', icon: SiCss3, iconColor: '#1572B6', textColor: '#1572B6' },
+  { name: 'C++', icon: SiCplusplus, iconColor: '#00599C', textColor: '#00599C' },
+  { name: 'JavaScript', icon: SiJavascript, iconColor: '#F7DF1E', textColor: '#F7DF1E' },
+  { name: 'Docker', icon: SiDocker, iconColor: '#2496ED', textColor: '#2496ED' },
+  { name: 'Git', icon: SiGit, iconColor: '#F05032', textColor: '#F05032' },
+  { name: 'React', icon: SiReact, iconColor: '#61DAFB', textColor: '#61DAFB' },
+  { name: 'Composer', icon: SiComposer, iconColor: '#885630', textColor: '#885630' },
+  { name: 'Linux', icon: SiLinux, iconColor: '#FCC624', textColor: '#FCC624' },
+  { name: 'Python', icon: SiPython, iconColor: '#3776AB', textColor: '#FFD43B' }, // Blue and yellow
+  { name: 'npm', icon: SiNpm, iconColor: '#CB3837', textColor: '#CB3837' },
+  { name: 'SQL', icon: Database, iconColor: '#8f0086ff', textColor: '#8f008aff' }, // Using MySQL icon for SQL
 ];
 
 const PHILOSOPHY = [
@@ -350,12 +352,63 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
             />
           </motion.div>
 
-          <motion.p
-            className="text-lg font-light mb-4 text-muted-foreground"
-            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
-          >
-            Junior Full-Stack Developer
-          </motion.p>
+          <motion.div className="flex items-center gap-3 flex-wrap">
+  <motion.h2
+    className="text-lg font-bold tracking-wide"
+    style={{ fontFamily: "'Poppins', 'Montserrat', 'Roboto', sans-serif" }}
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6, delay: 0.1 }}
+  >
+    {"Abdelrahim Abuelmaaref".split("").map((char, index) => (
+      <motion.span
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          color: "#9CFF00",
+          filter: "grayscale(0%)",
+          textShadow: "0 0 15px rgba(156, 255, 0, 0.6)"
+        }}
+        transition={{
+          duration: 0.3,
+          delay: 0.1 + index * 0.05,
+          type: "spring",
+          stiffness: 200
+        }}
+        whileHover={{
+          scale: 1.4,
+          filter: "grayscale(100%) brightness(0.7)",
+          color: "#666666",
+          textShadow: "0 0 0px rgba(0, 0, 0, 0)",
+          rotate: [0, -10, 10, -5, 0],
+          y: -5,
+          transition: { 
+            duration: 0.4,
+            rotate: { duration: 0.5 }
+          }
+        }}
+        className="inline-block cursor-pointer transition-all duration-200"
+        style={{
+          fontWeight: 600,
+          letterSpacing: "0.02em"
+        }}
+      >
+        {char === " " ? "\u00A0" : char}
+      </motion.span>
+    ))}
+  </motion.h2>
+  <motion.p
+    className="text-sm font-light text-muted-foreground"
+    style={{ fontFamily: "'Inter', 'system-ui', sans-serif" }}
+    initial={{ opacity: 0, x: 10 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.6, delay: 0.5 }}
+  >
+    Junior Full-Stack Developer
+  </motion.p>
+</motion.div>
           <motion.h1
             className="text-balance font-extrabold leading-tight tracking-tighter"
             style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
@@ -442,68 +495,161 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
 };
 
 const AboutSection = () => (
-  <section id="about" className="py-24 max-w-[1600px] mx-auto">
+  <section id="about" className="py-24 max-w-[1600px] mx-auto px-4 sm:px-8">
+    
+    {/* IMPACTFUL HEADER */}
     <motion.h2
-      className="text-4xl sm:text-5xl font-light tracking-wide mb-12 max-w-7xl"
-      initial={{ opacity: 0, y: 50 }}
+      className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 text-center sm:text-left max-w-7xl mx-auto"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
     >
-      About Me
+      <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        Building the Next-Gen Stack.
+      </span>
     </motion.h2>
-    <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+    <motion.p
+      className="text-xl font-light leading-relaxed mb-12 text-muted-foreground max-w-7xl mx-auto text-center sm:text-left"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ delay: 0.1 }}
+    >
+      A dedicated Full-Stack Developer focused on scalable and robust solutions.
+    </motion.p>
+    
+    <div className="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+      
+      {/* PERSONAL SUMMARY */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ delay: 0.2 }}
-      >
-        <p className="text-xl font-light leading-relaxed mb-6 text-muted-foreground">
-  I'm a Junior Full-Stack Developer with hands-on experience in <strong>PHP, Laravel, Node.js, Express and MERN stack development</strong>. I build <strong>scalable web applications and RESTful APIs</strong> with clean, maintainable code following <strong>SOLID principles</strong> and best practices.
-</p>
-<p className="text-xl font-light leading-relaxed text-muted-foreground">
-  I've developed <strong>real-time chat apps, e-commerce APIs, and learning management systems</strong> serving thousands of users. I also have experience with <strong>database design, Docker, Git, and API integration</strong>, and enjoy continuously improving my skills to deliver robust, production-ready solutions.
-</p>
+  className="lg:col-span-1 space-y-8"
+  initial={{ opacity: 0, x: -30 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true, amount: 0.3 }}
+  transition={{ delay: 0.2 }}
+>
+  <div className="space-y-4">
+    <h3 className="text-2xl font-semibold text-foreground border-b border-divider pb-2 flex items-center gap-2">
+      <Briefcase size={20} className="text-accent" /> My Focus
+    </h3>
 
-      </motion.div>
+    {/* Highlighted Points */}
+    <div className="space-y-4">
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          💻
+        </div>
+        <div>
+          <p className="font-semibold text-lg">Full-Stack Expertise</p>
+          <p className="text-sm text-muted-foreground">
+            Hands-on experience with <strong>PHP, Laravel, Node.js, Express, MERN stack</strong>. Build scalable web applications and RESTful APIs.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          ⚡
+        </div>
+        <div>
+          <p className="font-semibold text-lg">Performance & Clean Code</p>
+          <p className="text-sm text-muted-foreground">
+            Writing <strong>clean, maintainable code</strong> following <strong>SOLID principles</strong> and best practices.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          🌐
+        </div>
+        <div>
+          <p className="font-semibold text-lg">Projects & Impact</p>
+          <p className="text-sm text-muted-foreground">
+            Developed <strong>real-time chat apps, e-commerce APIs, LMS platforms</strong> serving thousands of users. Continuously improving skills for <strong>production-ready solutions</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.div>
+
+
+      {/* CORE STRENGTHS CARD */}
       <motion.div
-        className="p-6 sm:p-8 rounded-xl border-2 border-accent/20 bg-gradient-to-br from-card via-card to-accent/5 relative overflow-hidden group"
+        className="p-6 sm:p-8 rounded-xl border border-primary/30 bg-gradient-to-br from-card via-card to-primary/10 relative overflow-hidden group h-full shadow-md hover:shadow-2xl transition-shadow duration-300"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ delay: 0.3 }}
         whileHover={{ scale: 1.02 }}
       >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
-        
+        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-3 rounded-lg bg-accent/10 text-accent">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              </svg>
+            <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-card transition-all duration-300">
+              <Zap className="w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold">Core Strengths</h3>
+          </div>
+
+          <div className="space-y-4">
+            <div className="p-4 rounded-lg bg-background/50 border border-divider/50 hover:bg-primary/5 transition-colors duration-300">
+              <p className="text-base font-semibold text-primary mb-1 flex items-center gap-2">
+                <Laptop size={16} /> Backend Proficiency
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Expert in <strong>Laravel, Node/Express, RESTful API design</strong> and <strong>MySQL & MongoDB</strong>
+              </p>
+            </div>
+
+            <div className="p-4 rounded-lg bg-background/50 border border-divider/50 hover:bg-primary/5 transition-colors duration-300">
+              <p className="text-base font-semibold text-primary mb-1 flex items-center gap-2">
+                <HeartHandshake size={16} /> Clean Code Advocate
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Committed to <strong>SOLID principles, MVC architecture</strong>, and automated testing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* EDUCATION CARD */}
+      <motion.div
+        className="p-6 sm:p-8 rounded-xl border border-accent/20 bg-gradient-to-br from-card via-card to-accent/10 relative overflow-hidden group h-full shadow-md hover:shadow-2xl transition-shadow duration-300"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ delay: 0.4 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 rounded-lg bg-accent/10 text-accent group-hover:bg-accent group-hover:text-card transition-all duration-300">
+              <GraduationCap className="w-6 h-6" />
             </div>
             <h3 className="text-2xl font-bold">Education</h3>
           </div>
-          
+
           <p className="text-xl font-semibold mb-2">
-            Bachelor of Computers & Artificial Intelligence
+            Bachelor of Computers & AI
           </p>
           <p className="text-base text-muted-foreground mb-6 flex items-center gap-2">
             <span className="text-accent">📍</span>
             Sohag University | Sept 2021 – June 2025
           </p>
-          
+
           <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-background/50 border border-divider/50">
+            <div className="p-4 rounded-lg bg-background/50 border border-divider/50 hover:bg-accent/10 transition-colors duration-300">
               <p className="text-sm font-medium text-accent mb-2">Relevant Coursework</p>
               <p className="text-sm text-muted-foreground">
                 Data Structures & Algorithms • Database Management • Web Development • Software Engineering
               </p>
             </div>
-            
-            <div className="p-4 rounded-lg bg-accent/5 border border-accent/20">
+
+            <div className="p-4 rounded-lg bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-colors duration-300">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <p className="text-sm font-medium text-accent mb-1">Final Year Project</p>
@@ -528,9 +674,11 @@ const AboutSection = () => (
           </div>
         </div>
       </motion.div>
+
     </div>
   </section>
 );
+
 
 // Updated component definition to accept 'projects' prop
 const PriorityProjectsGrid = ({ 
@@ -811,34 +959,28 @@ const CapabilitySignal = ({ handleHover, handleLeave, cursorText }: any) => (
           aria-label={`${cap.name} technical skill`}
         >
           <motion.div
-            // Removed dynamic Tailwind classes and moved color/shadow logic to framer-motion's style animation
-            initial={{ color: 'hsl(var(--foreground) / 0.7)', filter: 'none' }} // Initial subtle color
+            initial={{ color: 'hsl(var(--foreground) / 0.7)', filter: 'none' }}
             whileHover={{ 
               scale: 1.2, 
               rotate: 3, 
-              color: cap.color, // Set icon color to brand color (hex)
-              filter: `drop-shadow(0px 0px 8px ${cap.color})` // Apply matching drop shadow
+              color: cap.iconColor,
+              filter: `drop-shadow(0px 0px 8px ${cap.iconColor})`
             }}
             transition={{ 
               type: "spring", 
               stiffness: 400, 
               damping: 10,
-              color: { duration: 0.3 }, // Smooth color transition
+              color: { duration: 0.3 },
               filter: { duration: 0.3 }
             }}
-            // Use a default foreground class for non-animated state
             className="text-foreground/70"
           >
-            <cap.icon
-              size={48}
-              // Icon component now inherits the animated style from the parent motion.div
-            />
+            <cap.icon size={48} />
           </motion.div>
           
-          {/* Text Label Fix: Set the color inline. Visibility is controlled by Tailwind's group-hover */}
           <motion.span 
-            className={`absolute -bottom-8 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap`}
-            style={{ color: cap.color }} // Use inline style to set the brand color
+            className="absolute -bottom-8 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
+            style={{ color: cap.textColor }}
             initial={{ y: -5 }}
             whileHover={{ y: 0 }}
           >
@@ -849,7 +991,6 @@ const CapabilitySignal = ({ handleHover, handleLeave, cursorText }: any) => (
     </div>
   </section>
 );
-
 const HumanLayer = () => (
   <section id="philosophy" className="py-24 max-w-[1600px] mx-auto">
     <motion.h2
@@ -963,7 +1104,7 @@ const ContactLayer = ({ handleHover, handleLeave }: any) => (
     >
         <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/elmaaref" label="LinkedIn" handleHover={handleHover} handleLeave={handleLeave} />
         <SocialIcon Icon={Github} href="https://github.com/abdelrahim3aa" label="GitHub" handleHover={handleHover} handleLeave={handleLeave} />
-        <SocialIcon Icon={LinkIcon} href="tel:+201015366195" label="Phone" handleHover={handleHover} handleLeave={handleLeave} />
+        <SocialIcon Icon={Phone} href="tel:+201015366195" label="Phone" handleHover={handleHover} handleLeave={handleLeave} />
     </motion.div>
   </section>
 );
@@ -1123,15 +1264,15 @@ const Index = () => {
       <main className="max-w-[1920px] mx-auto" id="main-content">
         <Hero handleHover={handleHover} handleLeave={handleLeave} />
         <AboutSection />
-        
-        {/* NEW FILTER SECTION - ADDED HERE */}
-        <section className="py-24 max-w-[1600px] mx-auto">
-            <FilterSection 
-                onFilterChange={handleFilterChange}
-                onSearchChange={handleSearchChange}
-                onSortChange={handleSortChange}
-            />
-        </section>
+              
+      {/* FILTER SECTION - ADD id="filter-section" HERE */}
+      <section id="filter-section" className="py-24 max-w-[1600px] mx-auto">
+          <FilterSection 
+              onFilterChange={handleFilterChange}
+              onSearchChange={handleSearchChange}
+              onSortChange={handleSortChange}
+          />
+      </section>
         
         {/* PRIORITY PROJECTS GRID - UPDATED TO USE filteredPriorityProjects */}
         <PriorityProjectsGrid 

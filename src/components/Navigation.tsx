@@ -16,9 +16,9 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
   const navItems = [
     { id: 'home', label: 'Home', href: '#home' },
     { id: 'about', label: 'About', href: '#about' },
-    { id: 'projects', label: 'Projects', href: '#filter-section' },
-    { id: 'tech', label: 'Tech Stack', href: '#capabilities' },
-    { id: 'approach', label: 'Approach', href: '#philosophy' },
+    { id: 'filter-section', label: 'Projects', href: '#filter-section' },
+    { id: 'capabilities', label: 'Tech Stack', href: '#capabilities' },
+    { id: 'philosophy', label: 'Approach', href: '#philosophy' },
     { id: 'contact', label: 'Contact', href: '#contact' },
   ];
 
@@ -34,7 +34,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
       // Detect active section
       const sections = navItems.map(item => ({
         id: item.id,
-        element: document.querySelector(item.href) || document.querySelector('header')
+        element: document.querySelector(item.href)
       }));
 
       const currentSection = sections.find(section => {
@@ -53,10 +53,11 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLButtonElement>, href: string) => {
+    e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80;
+      const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -85,7 +86,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
           <div className="flex items-center justify-between">
             {/* Logo/Name */}
             <motion.button
-              onClick={() => scrollToSection('#home')}
+              onClick={(e) => scrollToSection(e, '#home')}
               className="text-xl font-bold tracking-tight hover:text-accent transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -99,7 +100,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.id}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={(e) => scrollToSection(e, item.href)}
                   className={`relative px-4 py-2 text-sm font-medium transition-colors ${
                     activeSection === item.id
                       ? 'text-accent'
@@ -175,7 +176,7 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.id}
-                    onClick={() => scrollToSection(item.href)}
+                    onClick={(e) => scrollToSection(e, item.href)}
                     className={`w-full text-left px-6 py-4 rounded-xl font-medium transition-all ${
                       activeSection === item.id
                         ? 'bg-accent text-accent-foreground'
