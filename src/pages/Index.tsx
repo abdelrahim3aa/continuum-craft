@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Github, Linkedin, Mail, ArrowRight, X, HeartHandshake, Zap, Code, ExternalLink, Briefcase, Link as LinkIcon, Download, Database, Phone, Laptop, GraduationCap } from 'lucide-react';
-import { 
+import {
   SiPhp, SiLaravel, SiMysql, SiNodedotjs, SiExpress, SiMongodb,
   SiHtml5, SiCss3, SiCplusplus, SiJavascript, SiDocker, SiGit,
   SiReact, SiComposer, SiLinux, SiPython, SiNpm
@@ -10,10 +10,16 @@ import portraitImage from '@/assets/portrait.jpg';
 import fintechImage from '@/assets/project-fintech.jpg';
 import subTrack from '@/assets/project-subTrack.jpg';
 import ecommerceImage from '@/assets/project-ecommerce.jpg';
+import noteApp from '@/assets/project-note.jpg';
+import waterStation from '@/assets/project-water.jpg';
 import cloudImage from '@/assets/project-cloud.jpg';
+import newsImage from '@/assets/project-news.jpg';
+import chatImage from '@/assets/project-chat.jpg';
+import lmsImage from '@/assets/project-lms.jpg';
 import Navigation from '@/components/Navigation';
-// NEW IMPORTS FOR FILTERING
-import { FilterSection, SortOption, FilterState } from '@/components/FilterSection'; 
+import PwaLogoUrl from '@/assets/icons/logo-pwa.svg';// NEW IMPORTS FOR FILTERING
+
+import { FilterSection, SortOption, FilterState } from '@/components/FilterSection';
 
 // --- DATA STRUCTURES ---
 
@@ -22,8 +28,8 @@ const PROJECTS = [
     id: 'p-01',
     title: 'Learning Management System (LMS)',
     client: 'Final Year Project',
-    date: 'Feb 2025 – Present',
-    role: 'Technical Lead & Backend Developer',
+    date: 'Feb 2025 – Mai 2025',
+    role: 'Backend Team Lead & Backend Developer',
     priority: true,
     tag: 'Education Tech / Full Stack',
     stat: '500+',
@@ -33,10 +39,10 @@ const PROJECTS = [
     solution: 'Architected a Laravel-based LMS with MySQL backend, implementing MVC pattern and Repository design pattern for clean, maintainable code. Integrated Angular for dynamic frontend interactions.',
     process: ['Requirements gathering and system design', 'Database schema design with normalized tables', 'Role-based access control implementation', 'Team management and sprint planning'],
     result: 'Successfully deployed system supporting 500+ concurrent users with 99.9% uptime. Led 5-person development team, managing sprints and deliverables using Agile methodology.',
-    image: fintechImage,
-    liveUrl: '',
+    image: lmsImage,
+    liveUrl: 'https://github.com/abdelrahim3aa/Learning-Management-Systems-LMS_GP',
     // ADDED FOR FILTERING
-    type: ['Full Stack', 'Server Rendered', 'Education'], 
+    type: ['Full Stack', 'Server Rendered', 'Education'],
     technology: ['Laravel', 'MySQL', 'PHP'],
   },
   {
@@ -54,8 +60,8 @@ const PROJECTS = [
     solution: 'Built scalable messaging platform using Laravel 12 and Reverb, implementing WebSocket protocols for real-time communication. Used Laravel Sanctum for secure token-based authentication.',
     process: ['WebSocket server setup and optimization', 'Event-driven architecture design', 'Authentication and authorization implementation', 'Load testing and performance tuning'],
     result: 'Platform handles 1,000+ simultaneous connections with sub-second message delivery. Reduced security vulnerabilities by 95% through proper authentication implementation.',
-    image: ecommerceImage,
-    liveUrl: 'https://github.com/',
+    image: chatImage,
+    liveUrl: 'https://github.com/abdelrahim3aa/Real-time-chat-app',
     // ADDED FOR FILTERING
     type: ['Full Stack', 'Real-Time'],
     technology: ['Laravel', 'PHP', 'WebSockets'],
@@ -75,8 +81,8 @@ const PROJECTS = [
     solution: 'Developed comprehensive RESTful API using Laravel and MySQL, implementing OAuth 2.0 for secure authentication. Created OpenAPI-compliant documentation for easy integration.',
     process: ['RESTful endpoint design and implementation', 'OAuth 2.0 token-based authentication', 'Database query optimization and indexing', 'Redis caching implementation'],
     result: 'API handles 50,000+ daily requests with 99.5% uptime. Improved response times by 60% through database optimization and caching strategies.',
-    image: cloudImage,
-    liveUrl: '',
+    image: ecommerceImage,
+    liveUrl: 'https://github.com/abdelrahim3aa/ecommerce-restful-api',
     // ADDED FOR FILTERING
     type: ['Backend', 'API', 'E-commerce'],
     technology: ['Laravel', 'MySQL', 'PHP', 'API'],
@@ -96,8 +102,8 @@ const PROJECTS = [
     solution: 'Engineered news management system with Laravel and MySQL backend, implementing multi-language localization (Arabic, English, French) and developing analytics dashboard for content insights.',
     process: ['Content management system architecture', 'Multi-language localization implementation', 'Analytics dashboard development', 'Frontend optimization with lazy loading'],
     result: 'Platform supports 5,000+ users with 35% increase in user engagement. Reduced page load times by 45% through frontend optimization techniques.',
-    image: fintechImage,
-    liveUrl: '',
+    image: newsImage,
+    liveUrl: 'https://github.com/abdelrahim3aa/news-app-laravel',
     // ADDED FOR FILTERING
     type: ['Full Stack', 'Server Rendered', 'Content Management'],
     technology: ['Laravel', 'MySQL', 'PHP', 'Blade'],
@@ -124,7 +130,7 @@ const PROJECTS = [
     ],
     result: 'Achieved 99.9% uptime reliability with automated daily checks for 1,000+ tracked subscriptions. Reduced missed renewals by 85% through precise email notifications. Token revocation system enhances security by preventing replay attacks.',
     image: subTrack, // Replace with your actual image
-    liveUrl: '',
+    liveUrl: 'https://github.com/abdelrahim3aa/Subscription-Tracker-API',
     features: [
       'JWT-based stateless authentication',
       'Automated email reminders (customizable timing)',
@@ -153,17 +159,129 @@ const PROJECTS = [
     // ADDED FOR FILTERING
     type: ['Backend', 'API', 'Fintech'],
     technology: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+  },
+  {
+    id: 'p-06',
+    title: 'MVC Note-Taking Application',
+    client: 'Personal Project',
+    date: 'Oct 2024 – Nov 2024',
+    role: 'Full-Stack Developer',
+    priority: false,
+    tag: 'Note-Taking / Full-Stack / MVC',
+    stat: '99%',
+    statLabel: 'Application Reliability',
+    problem: 'Users often struggle to organize tasks and notes efficiently. Many basic note-taking tools lack a structured backend, user authentication, or an organized way to manage notes, leading to messy workflows and poor task tracking.',
+    insight: 'Implementing a structured MVC architecture with secure user authentication and CRUD operations allows users to manage notes efficiently while keeping data organized, accessible, and secure.',
+    solution: 'Built a full-stack MVC web application with PHP, JavaScript, and MySQL, implementing secure login/registration, CRUD functionality, note completion marking, responsive design, and OOP principles for clean, maintainable code.',
+    process: [
+      'Designed MVC architecture with Models, Views, and Controllers for separation of concerns',
+      'Implemented secure user authentication with PHP sessions and password hashing',
+      'Developed full CRUD functionality for notes management',
+      'Enabled marking notes as completed for better organization',
+      'Implemented responsive UI with custom CSS and Font Awesome icons',
+      'Configured MySQL database with tables for users and notes',
+      'Implemented error handling and logging mechanisms',
+      'Optimized frontend with JavaScript for dynamic interactions'
+    ],
+    result: 'Delivered a fully functional note-taking application with reliable user authentication, smooth CRUD operations, and responsive design. Users can organize notes effectively, mark completion status, and interact seamlessly across devices.',
+    image: noteApp, // Replace with your actual image import
+    liveUrl: 'https://github.com/abdelrahim3aa/Note-Taking-Application',
+    features: [
+      'User Authentication (login/register)',
+      'CRUD operations for notes',
+      'Mark notes as completed',
+      'Responsive design across devices',
+      'MVC architecture for clean separation of concerns',
+      'OOP principles for maintainable PHP code',
+      'MySQL backend storage',
+      'Session management for secure user state',
+      'Error handling and logging',
+      'Custom CSS for enhanced styling',
+      'Font Awesome icons integration'
+    ],
+    techStack: {
+      frontend: ['HTML', 'CSS', 'JavaScript'],
+      backend: ['PHP'],
+      database: ['MySQL'],
+      utilities: ['Font Awesome']
+    },
+    metrics: {
+      usersSupported: 'Unlimited',
+      notesHandled: '1000+ per user',
+      uptimePercentage: '99%',
+      responseTime: '<200ms',
+      successfulLogins: '1000+'
+    },
+    // ADDED FOR FILTERING
+    type: ['Full-Stack', 'MVC', 'Note-Taking'],
+    technology: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS']
+  },
+  {
+    id: 'p-07',
+    title: 'Water Stations PWA',
+    client: 'Personal Project',
+    date: 'Dec 2024 – Jan 2025',
+    role: 'Full-Stack Developer',
+    priority: true,
+    tag: 'PWA / Laravel / Full-Stack',
+    stat: '99%',
+    statLabel: 'Application Reliability',
+    problem: 'Water station operators and users need a reliable, offline-capable system to manage water supply, track usage, and generate reports. Traditional web apps fail when offline or under poor network conditions, causing delays and operational inefficiencies.',
+    insight: 'A Progressive Web App (PWA) with offline support, JWT authentication, and a modular architecture ensures users can manage water stations reliably even with unstable internet, while maintaining security and performance.',
+    solution: 'Built a full-stack PWA using Laravel for backend and HTML/CSS/JS for frontend, implementing secure JWT authentication, offline support via service workers, modular architecture, and database transactions. Included reporting, advanced logging, and queue jobs for reliable operations.',
+    process: [
+      'Designed backend using Laravel 12 with modular controllers and models',
+      'Created 6 models with relationships and 4 controllers for core functionalities',
+      'Implemented JWT authentication and middleware protection',
+      'Developed frontend PWA with 3 HTML pages, responsive CSS, and 6 JavaScript modules',
+      'Added service worker for offline support',
+      'Implemented input validation, rate limiting, and database transactions',
+      'Integrated reports system, advanced logging, and queue jobs',
+      'Structured project folders for maintainability (backend/frontend separation)'
+    ],
+    result: 'Delivered a fast, secure, and reliable Water Station PWA with full offline functionality, robust JWT authentication, accurate reporting, and smooth user experience across devices. Improved operational reliability and user satisfaction.',
+    image: waterStation, // Replace with your actual image import
+    liveUrl: 'https://github.com/abdelrahim3aa/Water-station-PWA',
+    features: [
+      'Progressive Web App with offline support',
+      'JWT authentication and middleware protection',
+      'Responsive frontend design',
+      'CRUD operations for water station management',
+      'Database transactions for consistency',
+      'Advanced logging and reporting system',
+      'Queue jobs for asynchronous processing',
+      'Input validation & rate limiting for security',
+      'Modular MVC architecture',
+      'Service worker for offline caching'
+    ],
+    techStack: {
+      backend: ['Laravel 12', 'MySQL', 'JWT'],
+      frontend: ['HTML', 'CSS', 'JavaScript', 'PWA'],
+      security: ['Middleware', 'Validation', 'JWT', 'Rate Limiting'],
+      utilities: ['Queue Jobs', 'Advanced Logging']
+    },
+    metrics: {
+      uptimePercentage: '99%',
+      offlineSupport: '100%',
+      responseTime: '<200ms',
+      usersSupported: 'Unlimited',
+      jobsProcessed: 'Thousands'
+    },
+    // ADDED FOR FILTERING
+    type: ['Full-Stack', 'PWA', 'Laravel', 'Management'],
+    technology: ['Laravel', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'PWA', 'JWT']
   }
+
+
 ];
 
-// MODIFIED: Added 'color' property (using HEX codes for brand colors)
 // MODIFIED: Added 'iconColor' and 'textColor' properties for separate coloring
 const CAPABILITIES = [
   { name: 'PHP', icon: SiPhp, iconColor: '#6c71bbff', textColor: '#6c71bbff' },
   { name: 'Laravel', icon: SiLaravel, iconColor: '#f91f14ff', textColor: '#f91f14ff' },
   { name: 'MySQL', icon: SiMysql, iconColor: '#00758F', textColor: '#F29111' }, // Dolphin colors
   { name: 'Node.js', icon: SiNodedotjs, iconColor: '#299c29ff', textColor: '#299c29ff' },
-  { name: 'Express.js', icon: SiExpress, iconColor: '#000000', textColor: '#000000' }, 
+  { name: 'Express.js', icon: SiExpress, iconColor: '#000000', textColor: '#000000' },
   { name: 'MongoDB', icon: SiMongodb, iconColor: '#47A248', textColor: '#47A248' },
   { name: 'HTML5', icon: SiHtml5, iconColor: '#e64b20ff', textColor: '#e64b20ff' },
   { name: 'CSS3', icon: SiCss3, iconColor: '#1572B6', textColor: '#1572B6' },
@@ -176,24 +294,25 @@ const CAPABILITIES = [
   { name: 'Linux', icon: SiLinux, iconColor: '#FCC624', textColor: '#FCC624' },
   { name: 'Python', icon: SiPython, iconColor: '#3776AB', textColor: '#FFD43B' }, // Blue and yellow
   { name: 'npm', icon: SiNpm, iconColor: '#CB3837', textColor: '#CB3837' },
-  { name: 'SQL', icon: Database, iconColor: '#8f0086ff', textColor: '#8f008aff' }, // Using MySQL icon for SQL
+  { name: 'SQL', icon: Database, iconColor: '#8f0086ff', textColor: '#8f0086ff' }, // Using MySQL icon for SQL
+  { name: 'PWA', iconUrl: PwaLogoUrl, iconColor: '#00AFFF', textColor: '#00AFFF' }
 ];
 
 const PHILOSOPHY = [
-  { 
-    title: 'Clean Code Advocate', 
-    icon: Code, 
-    text: 'Following SOLID principles and writing maintainable code isn\'t just best practice—it\'s a commitment to future developers and the longevity of the project. Every function should do one thing well.' 
+  {
+    title: 'Clean Code Advocate',
+    icon: Code,
+    text: 'Following SOLID principles and writing maintainable code isn\'t just best practice—it\'s a commitment to future developers and the longevity of the project. Every function should do one thing well.'
   },
-  { 
-    title: 'Problem Solver', 
-    icon: Zap, 
-    text: 'Backend development is about solving complex problems with elegant solutions. Whether optimizing database queries or architecting scalable APIs, the goal is always clarity and efficiency.' 
+  {
+    title: 'Problem Solver',
+    icon: Zap,
+    text: 'Backend development is about solving complex problems with elegant solutions. Whether optimizing database queries or architecting scalable APIs, the goal is always clarity and efficiency.'
   },
-  { 
-    title: 'Continuous Learner', 
-    icon: HeartHandshake, 
-    text: 'Technology evolves rapidly, and staying current is essential. From mastering Laravel patterns to exploring new tools like Docker and WebSockets, growth is a daily practice.' 
+  {
+    title: 'Continuous Learner',
+    icon: HeartHandshake,
+    text: 'Technology evolves rapidly, and staying current is essential. From mastering Laravel patterns to exploring new tools like Docker and WebSockets, growth is a daily practice.'
   },
 ];
 
@@ -353,88 +472,88 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
           </motion.div>
 
           <motion.div className="flex items-center gap-3 flex-wrap">
-  <motion.h2
-    className="text-lg font-bold tracking-wide"
-    style={{ fontFamily: "'Poppins', 'Montserrat', 'Roboto', sans-serif" }}
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.6, delay: 0.1 }}
-  >
-    {"Abdelrahim Abuelmaaref".split("").map((char, index) => (
-      <motion.span
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ 
-          opacity: 1, 
-          y: 0,
-          color: "#9CFF00",
-          filter: "grayscale(0%)",
-          textShadow: "0 0 15px rgba(156, 255, 0, 0.6)"
-        }}
-        transition={{
-          duration: 0.3,
-          delay: 0.1 + index * 0.05,
-          type: "spring",
-          stiffness: 200
-        }}
-        whileHover={{
-          scale: 1.4,
-          filter: "grayscale(100%) brightness(0.7)",
-          color: "#666666",
-          textShadow: "0 0 0px rgba(0, 0, 0, 0)",
-          rotate: [0, -10, 10, -5, 0],
-          y: -5,
-          transition: { 
-            duration: 0.4,
-            rotate: { duration: 0.5 }
-          }
-        }}
-        className="inline-block cursor-pointer transition-all duration-200"
-        style={{
-          fontWeight: 600,
-          letterSpacing: "0.02em"
-        }}
-      >
-        {char === " " ? "\u00A0" : char}
-      </motion.span>
-    ))}
-  </motion.h2>
-  <motion.p
-    className="text-sm font-light text-muted-foreground"
-    style={{ fontFamily: "'Inter', 'system-ui', sans-serif" }}
-    initial={{ opacity: 0, x: 10 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.6, delay: 0.5 }}
-  >
-    Junior Full-Stack Developer
-  </motion.p>
-</motion.div>
+            <motion.h2
+              className="text-lg font-bold tracking-wide"
+              style={{ fontFamily: "'Poppins', 'Montserrat', 'Roboto', sans-serif" }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {"Abdelrahim Abuelmaaref".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    color: "#9CFF00",
+                    filter: "grayscale(0%)",
+                    textShadow: "0 0 15px rgba(156, 255, 0, 0.6)"
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    delay: 0.1 + index * 0.05,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                  whileHover={{
+                    scale: 1.4,
+                    filter: "grayscale(100%) brightness(0.7)",
+                    color: "#666666",
+                    textShadow: "0 0 0px rgba(0, 0, 0, 0)",
+                    rotate: [0, -10, 10, -5, 0],
+                    y: -5,
+                    transition: {
+                      duration: 0.4,
+                      rotate: { duration: 0.5 }
+                    }
+                  }}
+                  className="inline-block cursor-pointer transition-all duration-200"
+                  style={{
+                    fontWeight: 600,
+                    letterSpacing: "0.02em"
+                  }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.h2>
+            <motion.p
+              className="text-sm font-light text-muted-foreground"
+              style={{ fontFamily: "'Inter', 'system-ui', sans-serif" }}
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Junior Full-Stack Developer
+            </motion.p>
+          </motion.div>
           <motion.h1
             className="text-balance font-extrabold leading-tight tracking-tighter"
             style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
-            variants={{ 
-              hidden: { scale: 0.98, opacity: 0, filter: 'blur(5px)' }, 
-              visible: { scale: 1, opacity: 1, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.83, 0, 0.17, 1] } } 
+            variants={{
+              hidden: { scale: 0.98, opacity: 0, filter: 'blur(5px)' },
+              visible: { scale: 1, opacity: 1, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.83, 0, 0.17, 1] } }
             }}
           >
             Building scalable web applications
             <span className="text-accent">.</span>
           </motion.h1>
           <motion.p
-  className="text-xl font-light mt-6 text-muted-foreground max-w-2xl"
-  variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { delay: 0.2 } } }}
->
-  Full-Stack Developer focused on Backend. Skilled in{' '}
-  <span className="font-medium text-primary/50 hover:text-[#9CFF00] transition-colors duration-200">
-    PHP/Laravel
-  </span>,{' '}
-  <span className="font-medium text-primary/50 hover:text-[#9CFF00] transition-colors duration-200">
-    Node.js/Express
-  </span>, and{' '}
-  <span className="font-medium text-primary/50 hover:text-[#9CFF00] transition-colors duration-200">
-    MERN stack
-  </span>. Passionate about clean, scalable, and maintainable web applications.
-</motion.p>
+            className="text-xl font-light mt-6 text-muted-foreground max-w-2xl"
+            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0, transition: { delay: 0.2 } } }}
+          >
+            Full-Stack Developer focused on Backend. Skilled in{' '}
+            <span className="font-medium text-primary/50 hover:text-[#9CFF00] transition-colors duration-200">
+              PHP/Laravel
+            </span>,{' '}
+            <span className="font-medium text-primary/50 hover:text-[#9CFF00] transition-colors duration-200">
+              Node.js/Express
+            </span>, and{' '}
+            <span className="font-medium text-primary/50 hover:text-[#9CFF00] transition-colors duration-200">
+              MERN stack
+            </span>. Passionate about clean, scalable, and maintainable web applications.
+          </motion.p>
 
 
           <div className="flex flex-wrap gap-4 mt-12">
@@ -470,7 +589,7 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
           variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { delay: 0.6, duration: 0.8 } } }}
         >
           <div className="relative aspect-[4/6] w-full rounded-xl p-1.5 bg-gradient-to-br from-secondary via-primary to-accent shadow-2xl">
-            <div 
+            <div
               className="w-full h-full overflow-hidden rounded-lg relative"
               style={{
                 clipPath: 'polygon(0% 0%, 100% 0%, 100% 90%, 80% 100%, 0% 100%)'
@@ -482,7 +601,7 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
                 className="w-full h-full object-cover transition-opacity duration-500 opacity-90"
                 loading="eager"
               />
-              <div 
+              <div
                 className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/20"
                 aria-hidden="true"
               />
@@ -496,7 +615,7 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
 
 const AboutSection = () => (
   <section id="about" className="py-24 max-w-[1600px] mx-auto px-4 sm:px-8">
-    
+
     {/* IMPACTFUL HEADER */}
     <motion.h2
       className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4 text-center sm:text-left max-w-7xl mx-auto"
@@ -517,62 +636,62 @@ const AboutSection = () => (
     >
       A dedicated Full-Stack Developer focused on scalable and robust solutions.
     </motion.p>
-    
+
     <div className="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-      
+
       {/* PERSONAL SUMMARY */}
       <motion.div
-  className="lg:col-span-1 space-y-8"
-  initial={{ opacity: 0, x: -30 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true, amount: 0.3 }}
-  transition={{ delay: 0.2 }}
->
-  <div className="space-y-4">
-    <h3 className="text-2xl font-semibold text-foreground border-b border-divider pb-2 flex items-center gap-2">
-      <Briefcase size={20} className="text-accent" /> My Focus
-    </h3>
+        className="lg:col-span-1 space-y-8"
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ delay: 0.2 }}
+      >
+        <div className="space-y-4">
+          <h3 className="text-2xl font-semibold text-foreground border-b border-divider pb-2 flex items-center gap-2">
+            <Briefcase size={20} className="text-accent" /> My Focus
+          </h3>
 
-    {/* Highlighted Points */}
-    <div className="space-y-4">
-      <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-          💻
-        </div>
-        <div>
-          <p className="font-semibold text-lg">Full-Stack Expertise</p>
-          <p className="text-sm text-muted-foreground">
-            Hands-on experience with <strong>PHP, Laravel, Node.js, Express, MERN stack</strong>. Build scalable web applications and RESTful APIs.
-          </p>
-        </div>
-      </div>
+          {/* Highlighted Points */}
+          <div className="space-y-4">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                💻
+              </div>
+              <div>
+                <p className="font-semibold text-lg">Full-Stack Expertise</p>
+                <p className="text-sm text-muted-foreground">
+                  Hands-on experience with <strong>PHP, Laravel, Node.js, Express, MERN stack</strong>. Build scalable web applications and RESTful APIs.
+                </p>
+              </div>
+            </div>
 
-      <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-          ⚡
-        </div>
-        <div>
-          <p className="font-semibold text-lg">Performance & Clean Code</p>
-          <p className="text-sm text-muted-foreground">
-            Writing <strong>clean, maintainable code</strong> following <strong>SOLID principles</strong> and best practices.
-          </p>
-        </div>
-      </div>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                ⚡
+              </div>
+              <div>
+                <p className="font-semibold text-lg">Performance & Clean Code</p>
+                <p className="text-sm text-muted-foreground">
+                  Writing <strong>clean, maintainable code</strong> following <strong>SOLID principles</strong> and best practices.
+                </p>
+              </div>
+            </div>
 
-      <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-          🌐
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                🌐
+              </div>
+              <div>
+                <p className="font-semibold text-lg">Projects & Impact</p>
+                <p className="text-sm text-muted-foreground">
+                  Developed <strong>real-time chat apps, e-commerce APIs, LMS platforms</strong> serving thousands of users. Continuously improving skills for <strong>production-ready solutions</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="font-semibold text-lg">Projects & Impact</p>
-          <p className="text-sm text-muted-foreground">
-            Developed <strong>real-time chat apps, e-commerce APIs, LMS platforms</strong> serving thousands of users. Continuously improving skills for <strong>production-ready solutions</strong>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</motion.div>
+      </motion.div>
 
 
       {/* CORE STRENGTHS CARD */}
@@ -681,14 +800,14 @@ const AboutSection = () => (
 
 
 // Updated component definition to accept 'projects' prop
-const PriorityProjectsGrid = ({ 
+const PriorityProjectsGrid = ({
   projects, // <--- ADDED PROP
-  handleHover, 
-  handleLeave, 
-  toggleProjectExpansion 
-}: { 
+  handleHover,
+  handleLeave,
+  toggleProjectExpansion
+}: {
   projects: typeof PROJECTS; // <--- ADDED TYPE
-  handleHover: (text: string) => void; 
+  handleHover: (text: string) => void;
   handleLeave: () => void;
   toggleProjectExpansion: (id: string) => void;
 }) => {
@@ -762,28 +881,28 @@ const PriorityProjectsGrid = ({
 };
 
 // Updated component definition to accept 'projects' prop
-const WorkTimeline = ({ 
+const WorkTimeline = ({
   projects, // <--- ADDED PROP
-  expandedProjects, 
-  toggleProjectExpansion, 
-  handleHover, 
-  handleLeave 
-}: { 
+  expandedProjects,
+  toggleProjectExpansion,
+  handleHover,
+  handleLeave
+}: {
   projects: typeof PROJECTS; // <--- ADDED TYPE
-  expandedProjects: string[]; 
+  expandedProjects: string[];
   toggleProjectExpansion: (id: string) => void;
   handleHover: (text: string) => void;
   handleLeave: () => void;
 }) => (
   <section id="work-archive" className="py-24 max-w-[1600px] mx-auto">
     <motion.h2
-        className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        All Projects
-      </motion.h2>
+      className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      All Projects
+    </motion.h2>
 
     <div className="relative border-l-2 border-divider ml-4 lg:ml-0">
       {projects.length > 0 ? ( // Use the 'projects' prop
@@ -811,7 +930,7 @@ const WorkTimeline = ({
           </motion.div>
         ))
       ) : (
-        <motion.div 
+        <motion.div
           className="lg:ml-24 pl-6 py-12 text-xl text-muted-foreground"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -823,12 +942,12 @@ const WorkTimeline = ({
   </section>
 );
 
-const ProjectPreview = ({ 
-  project, 
-  isExpanded, 
-  toggleProjectExpansion, 
-  handleHover, 
-  handleLeave 
+const ProjectPreview = ({
+  project,
+  isExpanded,
+  toggleProjectExpansion,
+  handleHover,
+  handleLeave
 }: any) => {
   const handleToggle = () => {
     toggleProjectExpansion(project.id);
@@ -889,9 +1008,9 @@ const CaseStudyContent = ({ project, handleHover, handleLeave }: any) => (
       <ContentBlock title="Insight" text={project.insight} highlighted />
     </div>
 
-    <a 
-      href={project.liveUrl} 
-      target="_blank" 
+    <a
+      href={project.liveUrl}
+      target="_blank"
       rel="noopener noreferrer"
       className="block relative overflow-hidden rounded-xl group"
       onMouseEnter={() => handleHover('VIEW SITE')}
@@ -935,10 +1054,10 @@ const ContentBlock = ({ title, text, highlighted }: { title: string; text: strin
 );
 
 // FIX IMPLEMENTED HERE
-const CapabilitySignal = ({ handleHover, handleLeave, cursorText }: any) => (
-  <section id="capabilities" className="py-24 max-w-[1600px] mx-auto">
+const CapabilitySignal = () => (
+  <section id="capabilities" className="py-24 max-w-[1600px] mx-auto px-4 sm:px-8">
     <motion.h2
-      className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl"
+      className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl text-center"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -960,25 +1079,29 @@ const CapabilitySignal = ({ handleHover, handleLeave, cursorText }: any) => (
         >
           <motion.div
             initial={{ color: 'hsl(var(--foreground) / 0.7)', filter: 'none' }}
-            whileHover={{ 
-              scale: 1.2, 
-              rotate: 3, 
+            whileHover={{
+              scale: 1.2,
+              rotate: 3,
               color: cap.iconColor,
-              filter: `drop-shadow(0px 0px 8px ${cap.iconColor})`
+              filter: cap.icon || cap.iconUrl ? `drop-shadow(0px 0px 8px ${cap.iconColor})` : 'none'
             }}
-            transition={{ 
-              type: "spring", 
-              stiffness: 400, 
+            transition={{
+              type: "spring",
+              stiffness: 400,
               damping: 10,
               color: { duration: 0.3 },
               filter: { duration: 0.3 }
             }}
-            className="text-foreground/70"
+            className="text-foreground/70 flex items-center justify-center"
           >
-            <cap.icon size={48} />
+            {cap.icon ? (
+              <cap.icon size={48} />
+            ) : cap.iconUrl ? (
+              <img src={cap.iconUrl} alt={cap.name} className="w-12 h-12" />
+            ) : null}
           </motion.div>
-          
-          <motion.span 
+
+          <motion.span
             className="absolute -bottom-8 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
             style={{ color: cap.textColor }}
             initial={{ y: -5 }}
@@ -991,6 +1114,7 @@ const CapabilitySignal = ({ handleHover, handleLeave, cursorText }: any) => (
     </div>
   </section>
 );
+
 const HumanLayer = () => (
   <section id="philosophy" className="py-24 max-w-[1600px] mx-auto">
     <motion.h2
@@ -1009,13 +1133,13 @@ const HumanLayer = () => (
           initial={{ opacity: 0, y: 50, rotateX: -15 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ 
-            duration: 0.6, 
+          transition={{
+            duration: 0.6,
             delay: index * 0.2,
             type: "spring",
             stiffness: 100
           }}
-          whileHover={{ 
+          whileHover={{
             y: -10,
             transition: { duration: 0.3 }
           }}
@@ -1024,21 +1148,21 @@ const HumanLayer = () => (
             className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             initial={false}
           />
-          
+
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.2 + 0.3, type: "spring", stiffness: 200 }}
           >
-            <item.icon 
-              size={40} 
-              className="mb-6 text-accent group-hover:scale-110 transition-transform duration-300" 
-              aria-hidden="true" 
+            <item.icon
+              size={40}
+              className="mb-6 text-accent group-hover:scale-110 transition-transform duration-300"
+              aria-hidden="true"
             />
           </motion.div>
-          
-          <motion.h3 
+
+          <motion.h3
             className="text-xl font-semibold mb-4"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -1047,8 +1171,8 @@ const HumanLayer = () => (
           >
             {item.title}
           </motion.h3>
-          
-          <motion.p 
+
+          <motion.p
             className="text-base font-light leading-relaxed text-muted-foreground"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1057,8 +1181,8 @@ const HumanLayer = () => (
           >
             {item.text}
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className="absolute bottom-0 left-0 h-1 bg-accent"
             initial={{ width: 0 }}
             whileInView={{ width: "100%" }}
@@ -1077,10 +1201,10 @@ const ContactLayer = ({ handleHover, handleLeave }: any) => (
       className="text-4xl sm:text-5xl font-light tracking-wide mb-8"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        Get In Touch
-      </motion.h2>
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      Get In Touch
+    </motion.h2>
     <motion.a
       href="mailto:abdelrahim.abuelmaaref@gmail.com"
       className="text-2xl sm:text-4xl lg:text-6xl font-extralight tracking-tighter mb-12 block group relative w-fit mx-auto transition-colors duration-300 hover:text-accent break-all px-4"
@@ -1102,9 +1226,9 @@ const ContactLayer = ({ handleHover, handleLeave }: any) => (
       viewport={{ once: true, amount: 0.5 }}
       transition={{ delay: 0.4 }}
     >
-        <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/elmaaref" label="LinkedIn" handleHover={handleHover} handleLeave={handleLeave} />
-        <SocialIcon Icon={Github} href="https://github.com/abdelrahim3aa" label="GitHub" handleHover={handleHover} handleLeave={handleLeave} />
-        <SocialIcon Icon={Phone} href="tel:+201015366195" label="Phone" handleHover={handleHover} handleLeave={handleLeave} />
+      <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/elmaaref" label="LinkedIn" handleHover={handleHover} handleLeave={handleLeave} />
+      <SocialIcon Icon={Github} href="https://github.com/abdelrahim3aa" label="GitHub" handleHover={handleHover} handleLeave={handleLeave} />
+      <SocialIcon Icon={Phone} href="tel:+201015366195" label="Phone" handleHover={handleHover} handleLeave={handleLeave} />
     </motion.div>
   </section>
 );
@@ -1134,7 +1258,7 @@ const AchievementsSection = () => (
     >
       Key Achievements
     </motion.h2>
-    
+
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {ACHIEVEMENTS.map((achievement, index) => (
         <motion.div
@@ -1147,7 +1271,7 @@ const AchievementsSection = () => (
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
-          
+
           <div className="relative z-10">
             <div className="text-4xl mb-4">{achievement.icon}</div>
             <h3 className="text-lg font-semibold mb-2 text-accent">{achievement.title}</h3>
@@ -1165,21 +1289,21 @@ const Index = () => {
   const [darkMode, toggleMode] = useDarkMode();
   const [cursorText, setCursorText] = useState('');
   const [expandedProjects, setExpandedProjects] = useState<string[]>([]);
-  
+
   // NEW STATE FOR FILTERING, SEARCHING, AND SORTING
   const [filters, setFilters] = useState<FilterState>({ type: ["All"], technology: [] });
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>('date-desc');
 
   const toggleProjectExpansion = useCallback((id: string) => {
-    setExpandedProjects(prev => 
+    setExpandedProjects(prev =>
       prev.includes(id) ? prev.filter(pid => pid !== id) : [...prev, id]
     );
   }, []);
 
   const handleHover = (text: string) => setCursorText(text);
   const handleLeave = () => setCursorText('');
-  
+
   // HANDLER FUNCTIONS FOR FILTERSECTION
   const handleFilterChange = useCallback((newFilters: FilterState) => {
     setFilters(newFilters);
@@ -1192,7 +1316,7 @@ const Index = () => {
   const handleSortChange = useCallback((newSort: SortOption) => {
     setSortOption(newSort);
   }, []);
-  
+
   // FILTERING, SEARCHING, AND SORTING LOGIC
   const filteredProjects = useMemo(() => {
     let result = [...PROJECTS];
@@ -1200,8 +1324,8 @@ const Index = () => {
     // 1. Filtering by Type (OR logic for selected types)
     const selectedTypes = filters.type.filter(t => t !== "All");
     if (selectedTypes.length > 0) {
-      result = result.filter(project => 
-        selectedTypes.some(selectedType => 
+      result = result.filter(project =>
+        selectedTypes.some(selectedType =>
           (project as any).type?.includes(selectedType) // Safely check 'type'
         )
       );
@@ -1209,8 +1333,8 @@ const Index = () => {
 
     // 2. Filtering by Technology (AND logic: project must have ALL selected technologies)
     if (filters.technology.length > 0) {
-      result = result.filter(project => 
-        filters.technology.every(selectedTech => 
+      result = result.filter(project =>
+        filters.technology.every(selectedTech =>
           (project as any).technology?.includes(selectedTech) // Safely check 'technology'
         )
       );
@@ -1226,7 +1350,7 @@ const Index = () => {
         project.solution.toLowerCase().includes(lowerCaseQuery)
       );
     }
-    
+
     // 4. Sorting
     result.sort((a, b) => {
       switch (sortOption) {
@@ -1251,7 +1375,7 @@ const Index = () => {
 
     return result;
   }, [filters, searchQuery, sortOption]);
-  
+
   // Separate filtered projects for the two display sections
   const filteredPriorityProjects = useMemo(() => filteredProjects.filter(p => p.priority), [filteredProjects]);
   const filteredArchiveProjects = filteredProjects; // WorkTimeline uses all filtered projects
@@ -1264,24 +1388,24 @@ const Index = () => {
       <main className="max-w-[1920px] mx-auto" id="main-content">
         <Hero handleHover={handleHover} handleLeave={handleLeave} />
         <AboutSection />
-              
-      {/* FILTER SECTION - ADD id="filter-section" HERE */}
-      <section id="filter-section" className="py-24 max-w-[1600px] mx-auto">
-          <FilterSection 
-              onFilterChange={handleFilterChange}
-              onSearchChange={handleSearchChange}
-              onSortChange={handleSortChange}
+
+        {/* FILTER SECTION - ADD id="filter-section" HERE */}
+        <section id="filter-section" className="py-24 max-w-[1600px] mx-auto">
+          <FilterSection
+            onFilterChange={handleFilterChange}
+            onSearchChange={handleSearchChange}
+            onSortChange={handleSortChange}
           />
-      </section>
-        
+        </section>
+
         {/* PRIORITY PROJECTS GRID - UPDATED TO USE filteredPriorityProjects */}
-        <PriorityProjectsGrid 
+        <PriorityProjectsGrid
           projects={filteredPriorityProjects} // Pass filtered projects
-          handleHover={handleHover} 
-          handleLeave={handleLeave} 
+          handleHover={handleHover}
+          handleLeave={handleLeave}
           toggleProjectExpansion={toggleProjectExpansion}
         />
-        
+
         {/* WORK TIMELINE - UPDATED TO USE filteredArchiveProjects */}
         <WorkTimeline
           projects={filteredArchiveProjects} // Pass filtered projects
@@ -1290,7 +1414,7 @@ const Index = () => {
           handleHover={handleHover}
           handleLeave={handleLeave}
         />
-        <CapabilitySignal handleHover={handleHover} handleLeave={handleLeave} cursorText={cursorText} />
+        <CapabilitySignal />
         <AchievementsSection />
         <HumanLayer />
         <ContactLayer handleHover={handleHover} handleLeave={handleLeave} />
