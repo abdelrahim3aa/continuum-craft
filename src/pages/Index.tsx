@@ -488,9 +488,7 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
                   animate={{
                     opacity: 1,
                     y: 0,
-                    color: "#9CFF00",
                     filter: "grayscale(0%)",
-                    textShadow: "0 0 15px rgba(156, 255, 0, 0.6)"
                   }}
                   transition={{
                     duration: 0.3,
@@ -501,8 +499,6 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
                   whileHover={{
                     scale: 1.4,
                     filter: "grayscale(100%) brightness(0.7)",
-                    color: "#666666",
-                    textShadow: "0 0 0px rgba(0, 0, 0, 0)",
                     rotate: [0, -10, 10, -5, 0],
                     y: -5,
                     transition: {
@@ -510,7 +506,7 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
                       rotate: { duration: 0.5 }
                     }
                   }}
-                  className="inline-block cursor-pointer transition-all duration-200"
+                  className="inline-block cursor-pointer transition-all duration-200 text-accent drop-shadow-[0_0_15px_hsl(var(--accent)/0.6)] hover:text-muted-foreground hover:drop-shadow-none"
                   style={{
                     fontWeight: 600,
                     letterSpacing: "0.02em"

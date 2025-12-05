@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import ColorThemeSwitcher from './ColorThemeSwitcher';
 
 interface NavigationProps {
   darkMode: boolean;
@@ -123,16 +124,26 @@ const Navigation = ({ darkMode, toggleMode }: NavigationProps) => {
                 </motion.button>
               ))}
               
+              {/* Color Theme Switcher */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="ml-2"
+              >
+                <ColorThemeSwitcher variant="inline" />
+              </motion.div>
+              
               {/* Dark Mode Toggle */}
               <motion.button
                 onClick={toggleMode}
-                className="ml-2 p-2 rounded-full border border-divider hover:bg-accent/10 transition-colors"
+                className="p-2 rounded-full border border-divider hover:bg-accent/10 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.7 }}
               >
                 {darkMode ? <Sun size={18} /> : <Moon size={18} />}
               </motion.button>
