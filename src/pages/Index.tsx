@@ -17,6 +17,8 @@ import newsImage from '@/assets/project-news.jpg';
 import chatImage from '@/assets/project-chat.jpg';
 import lmsImage from '@/assets/project-lms.jpg';
 import Navigation from '@/components/Navigation';
+import BackToTop from '@/components/BackToTop';
+import ColorThemeSwitcher from '@/components/ColorThemeSwitcher';
 import PwaLogoUrl from '@/assets/icons/logo-pwa.svg';// NEW IMPORTS FOR FILTERING
 
 import { FilterSection, SortOption, FilterState } from '@/components/FilterSection';
@@ -1427,7 +1429,8 @@ const Index = () => {
   return (
     <div className="min-h-screen relative p-4 sm:p-8 lg:p-12 transition-smooth">
       <Navigation darkMode={darkMode} toggleMode={toggleMode} />
-      {/* Custom cursor removed for better UX */}
+      <BackToTop />
+      <ColorThemeSwitcher />
 
       <main className="max-w-[1920px] mx-auto" id="main-content">
         <Hero handleHover={handleHover} handleLeave={handleLeave} />
