@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Github, Linkedin, Mail, ArrowRight, X, HeartHandshake, Zap, Code, ExternalLink, Briefcase, Link as LinkIcon, Download, Database, Phone, Laptop, GraduationCap } from 'lucide-react';
+import { Sun, Moon, Github, Linkedin, Mail, ArrowRight, X, HeartHandshake, Zap, Code, ExternalLink, Briefcase, Link as LinkIcon, Download, Database, Phone, Laptop, GraduationCap, Eye, Rocket, Target, Layers } from 'lucide-react';
 import {
   SiPhp, SiLaravel, SiMysql, SiNodedotjs, SiExpress, SiMongodb,
   SiHtml5, SiCss3, SiCplusplus, SiJavascript, SiDocker, SiGit,
@@ -571,15 +571,29 @@ const Hero = ({ handleHover, handleLeave }: { handleHover: (text: string) => voi
 
             <motion.a
               href="/AbdelrahimAbuelmaaref-Resume.pdf"
-              download="Abdelrahim_Abuelmaaref_Resume.pdf"
-              className="text-lg font-medium tracking-wider inline-flex items-center group relative border border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300 px-6 py-2 rounded-lg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-medium tracking-wider inline-flex items-center group relative border border-accent/50 text-accent hover:border-accent hover:bg-accent/10 transition-all duration-300 px-6 py-2 rounded-lg"
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { delay: 0.5 } } }}
-              onMouseEnter={() => handleHover('CV')}
+              onMouseEnter={() => handleHover('Resume')}
+              onMouseLeave={handleLeave}
+              aria-label="Preview Resume"
+            >
+              <Eye className="w-5 h-5 mr-2" />
+              Preview
+            </motion.a>
+
+            <motion.a
+              href="/AbdelrahimAbuelmaaref-Resume.pdf"
+              download="Abdelrahim_Abuelmaaref_Resume.pdf"
+              className="text-lg font-medium tracking-wider inline-flex items-center group relative bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 px-6 py-2 rounded-lg"
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { delay: 0.6 } } }}
+              onMouseEnter={() => handleHover('Resume')}
               onMouseLeave={handleLeave}
               aria-label="Download Resume"
             >
               <Download className="w-5 h-5 mr-2" />
-              Download Resume
+              Download
             </motion.a>
           </div>
         </div>
@@ -647,48 +661,62 @@ const AboutSection = () => (
         viewport={{ once: true, amount: 0.3 }}
         transition={{ delay: 0.2 }}
       >
-        <div className="space-y-4">
+        <div className="space-y-6">
           <h3 className="text-2xl font-semibold text-foreground border-b border-divider pb-2 flex items-center gap-2">
-            <Briefcase size={20} className="text-accent" /> My Focus
+            <Target size={20} className="text-accent" /> My Focus
           </h3>
 
-          {/* Highlighted Points */}
+          {/* Enhanced Highlighted Points with Cards */}
           <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                💻
-              </div>
-              <div>
-                <p className="font-semibold text-lg">Full-Stack Expertise</p>
-                <p className="text-sm text-muted-foreground">
-                  Hands-on experience with <strong>PHP, Laravel, Node.js, Express, MERN stack</strong>. Build scalable web applications and RESTful APIs.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                ⚡
-              </div>
-              <div>
-                <p className="font-semibold text-lg">Performance & Clean Code</p>
-                <p className="text-sm text-muted-foreground">
-                  Writing <strong>clean, maintainable code</strong> following <strong>SOLID principles</strong> and best practices.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
-                🌐
-              </div>
-              <div>
-                <p className="font-semibold text-lg">Projects & Impact</p>
-                <p className="text-sm text-muted-foreground">
-                  Developed <strong>real-time chat apps, e-commerce APIs, LMS platforms</strong> serving thousands of users. Continuously improving skills for <strong>production-ready solutions</strong>.
-                </p>
-              </div>
-            </div>
+            {[
+              {
+                icon: Layers,
+                title: "Full-Stack Expertise",
+                description: "Hands-on experience with PHP, Laravel, Node.js, Express, MERN stack. Build scalable web applications and RESTful APIs.",
+                gradient: "from-blue-500/20 to-purple-500/20",
+                iconColor: "text-blue-500"
+              },
+              {
+                icon: Zap,
+                title: "Performance & Clean Code",
+                description: "Writing clean, maintainable code following SOLID principles and best practices.",
+                gradient: "from-amber-500/20 to-orange-500/20",
+                iconColor: "text-amber-500"
+              },
+              {
+                icon: Rocket,
+                title: "Projects & Impact",
+                description: "Developed real-time chat apps, e-commerce APIs, LMS platforms serving thousands of users.",
+                gradient: "from-emerald-500/20 to-teal-500/20",
+                iconColor: "text-emerald-500"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                className={`relative p-4 rounded-xl border border-divider/50 bg-gradient-to-br ${item.gradient} backdrop-blur-sm overflow-hidden group cursor-default`}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10 flex items-start gap-4">
+                  <motion.div
+                    className={`flex-shrink-0 w-10 h-10 rounded-lg bg-card/80 ${item.iconColor} flex items-center justify-center shadow-sm`}
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                  >
+                    <item.icon size={20} />
+                  </motion.div>
+                  <div>
+                    <p className="font-semibold text-base mb-1">{item.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
@@ -1054,66 +1082,82 @@ const ContentBlock = ({ title, text, highlighted }: { title: string; text: strin
 );
 
 // FIX IMPLEMENTED HERE
-const CapabilitySignal = () => (
-  <section id="capabilities" className="py-24 max-w-[1600px] mx-auto px-4 sm:px-8">
-    <motion.h2
-      className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl text-center"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
-      Tech Stack
-    </motion.h2>
+const CapabilitySignal = () => {
+  const [activeCap, setActiveCap] = useState<string | null>(null);
 
-    <div className="flex flex-wrap justify-center gap-x-12 gap-y-16 max-w-4xl mx-auto">
-      {CAPABILITIES.map((cap, index) => (
-        <motion.div
-          key={cap.name}
-          className="relative w-16 h-16 flex flex-col items-center justify-center group"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.4, delay: index * 0.05 }}
-          role="img"
-          aria-label={`${cap.name} technical skill`}
-        >
-          <motion.div
-            initial={{ color: 'hsl(var(--foreground) / 0.7)', filter: 'none' }}
-            whileHover={{
-              scale: 1.2,
-              rotate: 3,
-              color: cap.iconColor,
-              filter: cap.icon || cap.iconUrl ? `drop-shadow(0px 0px 8px ${cap.iconColor})` : 'none'
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 10,
-              color: { duration: 0.3 },
-              filter: { duration: 0.3 }
-            }}
-            className="text-foreground/70 flex items-center justify-center"
-          >
-            {cap.icon ? (
-              <cap.icon size={48} />
-            ) : cap.iconUrl ? (
-              <img src={cap.iconUrl} alt={cap.name} className="w-12 h-12" />
-            ) : null}
-          </motion.div>
+  return (
+    <section id="capabilities" className="py-24 max-w-[1600px] mx-auto px-4 sm:px-8">
+      <motion.h2
+        className="text-4xl sm:text-5xl font-light tracking-wide mb-24 max-w-7xl text-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        Tech Stack
+      </motion.h2>
 
-          <motion.span
-            className="absolute -bottom-8 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
-            style={{ color: cap.textColor }}
-            initial={{ y: -5 }}
-            whileHover={{ y: 0 }}
-          >
-            {cap.name}
-          </motion.span>
-        </motion.div>
-      ))}
-    </div>
-  </section>
-);
+      <div className="flex flex-wrap justify-center gap-x-12 gap-y-16 max-w-4xl mx-auto">
+        {CAPABILITIES.map((cap, index) => {
+          const isActive = activeCap === cap.name;
+          
+          return (
+            <motion.div
+              key={cap.name}
+              className="relative w-16 h-16 flex flex-col items-center justify-center cursor-pointer"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              role="img"
+              aria-label={`${cap.name} technical skill`}
+              onClick={() => setActiveCap(isActive ? null : cap.name)}
+              onMouseEnter={() => setActiveCap(cap.name)}
+              onMouseLeave={() => setActiveCap(null)}
+            >
+              <motion.div
+                animate={{
+                  scale: isActive ? 1.2 : 1,
+                  rotate: isActive ? 3 : 0,
+                  color: isActive ? cap.iconColor : 'hsl(var(--foreground) / 0.7)',
+                  filter: isActive && (cap.icon || cap.iconUrl) ? `drop-shadow(0px 0px 8px ${cap.iconColor})` : 'none'
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10,
+                  color: { duration: 0.3 },
+                  filter: { duration: 0.3 }
+                }}
+                className="flex items-center justify-center"
+              >
+                {cap.icon ? (
+                  <cap.icon size={48} />
+                ) : cap.iconUrl ? (
+                  <img src={cap.iconUrl} alt={cap.name} className="w-12 h-12" style={{ filter: isActive ? 'none' : 'grayscale(50%) opacity(0.7)' }} />
+                ) : null}
+              </motion.div>
+
+              <AnimatePresence>
+                {isActive && (
+                  <motion.span
+                    className="absolute -bottom-8 text-sm font-medium whitespace-nowrap"
+                    style={{ color: cap.textColor }}
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {cap.name}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
 
 const HumanLayer = () => (
   <section id="philosophy" className="py-24 max-w-[1600px] mx-auto">
@@ -1383,7 +1427,7 @@ const Index = () => {
   return (
     <div className="min-h-screen relative p-4 sm:p-8 lg:p-12 transition-smooth">
       <Navigation darkMode={darkMode} toggleMode={toggleMode} />
-      <CustomCursor cursorText={cursorText} />
+      {/* Custom cursor removed for better UX */}
 
       <main className="max-w-[1920px] mx-auto" id="main-content">
         <Hero handleHover={handleHover} handleLeave={handleLeave} />
